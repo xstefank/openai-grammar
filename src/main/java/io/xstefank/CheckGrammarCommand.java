@@ -1,5 +1,6 @@
 package io.xstefank;
 
+import io.quarkus.arc.Arc;
 import jakarta.enterprise.context.control.ActivateRequestContext;
 import jakarta.inject.Inject;
 import picocli.CommandLine;
@@ -14,11 +15,16 @@ public class CheckGrammarCommand implements Runnable {
     String text;
 
     @Inject
-    GrammarCheckAiService grammarCheckAiService;
+    GrammarCheckAIService grammarCheckAIService;
 
     @Override
     @ActivateRequestContext
     public void run() {
-        System.out.println(grammarCheckAiService.fixGrammar(language, text));
+        System.out.println(getGrammarCheckAIService().fixGrammar(language, text));
+    }
+
+    private GrammarCheckAIService getGrammarCheckAIService() {
+        // Fallback to programmatic lookup (needed for JBang)
+        return grammarCheckAIService != null ? grammarCheckAIService : Arc.container().select(GrammarCheckAIService.class).get();
     }
 }

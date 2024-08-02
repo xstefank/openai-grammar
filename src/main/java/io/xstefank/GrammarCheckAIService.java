@@ -5,7 +5,7 @@ import dev.langchain4j.service.UserMessage;
 import io.quarkiverse.langchain4j.RegisterAiService;
 
 @RegisterAiService
-public interface GrammarCheckAiService {
+public interface GrammarCheckAIService {
 
     @SystemMessage("You are a grammar checker that fixes grammar errors in any of the asked languages.")
     @UserMessage("""
