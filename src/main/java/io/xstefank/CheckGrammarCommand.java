@@ -5,6 +5,8 @@ import jakarta.enterprise.context.control.ActivateRequestContext;
 import jakarta.inject.Inject;
 import picocli.CommandLine;
 
+import java.util.Optional;
+
 @CommandLine.Command
 public class CheckGrammarCommand implements Runnable {
 
@@ -20,6 +22,9 @@ public class CheckGrammarCommand implements Runnable {
     @Override
     @ActivateRequestContext
     public void run() {
+        Optional.ofNullable(System.getenv("GRAMMAR_CHECK_OPENAI_KEY")).orElseThrow(
+            () -> new IllegalStateException("Required environment variable 'GRAMMAR_CHECK_OPENAI_KEY' not found. Please set it to the valid OpenAI token."));
+
         System.out.println(getGrammarCheckAIService().fixGrammar(language, text));
     }
 
