@@ -11,7 +11,6 @@
 
 import io.quarkus.runtime.Quarkus;
 import jakarta.enterprise.context.ApplicationScoped;
-import static java.lang.System.*;
 import io.xstefank.*;
 import io.quarkus.runtime.QuarkusApplication;
 import io.quarkus.runtime.annotations.QuarkusMain;
@@ -24,7 +23,6 @@ import jakarta.enterprise.context.control.ActivateRequestContext;
 public class JBangGrammarCheck {
 
     public static void main(String... args) {
-        out.println("Running Quarkus...");
         Quarkus.run(GrammarCheckMain.class, args);
     }
 
