@@ -13,6 +13,7 @@ public interface GrammarCheckAIService {
         Output only the fixed text as a string without quotes.
         Newline characters should be outputted Linux compliant which is as '\n'.
         Preserve all lines even if they are empty.
+        Don't return text with empty new line at the end so the copy-paste of the text ends in the same place.
         The text in which you should fix grammar errors is "{text}".
         """)
     String fixGrammar(String language, String text);
